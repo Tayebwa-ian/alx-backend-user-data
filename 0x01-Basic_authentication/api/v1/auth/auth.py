@@ -19,6 +19,8 @@ class Auth:
         for p in excluded_paths:
             if self.strip_slash(p) == self.strip_slash(path):
                 return False
+            if self.asterik_handler(p, path):
+                return False
         return True
 
     @staticmethod
@@ -31,6 +33,20 @@ class Auth:
         if data.endswith("/"):
             return data[:-1]
         return data
+
+    @staticmethod
+    def asterik_handler(link: str, path: str) -> str:
+        """
+        Compare the path with a link ending with *
+        Args:
+            link: the link
+            path: the path
+        """
+        link_list = link.split("/")
+        word = link_list[-1].strip("*")
+        path_list = path.split("/")
+        if path_list[-1].startswith(word):
+            return True
 
     def authorization_header(self, request=None) -> str:
         """
