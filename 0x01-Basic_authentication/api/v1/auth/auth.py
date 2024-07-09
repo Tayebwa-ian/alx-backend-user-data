@@ -20,7 +20,7 @@ class Auth:
             if self.strip_slash(p) == self.strip_slash(path):
                 return False
         return True
-    
+
     @staticmethod
     def strip_slash(data: str) -> str:
         """
@@ -31,7 +31,7 @@ class Auth:
         if data.endswith("/"):
             return data[:-1]
         return data
-    
+
     def authorization_header(self, request=None) -> str:
         """
         recieves request and retrrives header information
@@ -39,7 +39,7 @@ class Auth:
             request: Flask request object
         """
         return None
-    
+
     def current_user(self, request=None) -> TypeVar('User'):
         """
         returns current user if exists
