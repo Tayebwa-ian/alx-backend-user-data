@@ -35,7 +35,7 @@ class Auth:
         return data
 
     @staticmethod
-    def asterik_handler(link: str, path: str) -> str:
+    def asterik_handler(link: str, path: str) -> bool:
         """
         Compare the path with a link ending with *
         Args:
