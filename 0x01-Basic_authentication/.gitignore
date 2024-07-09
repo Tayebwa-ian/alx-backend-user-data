@@ -1,4 +1,5 @@
-*.main.py
+*main.py
+main*
 *~
 *__
 auth_env
