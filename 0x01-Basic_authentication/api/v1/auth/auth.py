@@ -42,11 +42,10 @@ class Auth:
             link: the link
             path: the path
         """
-        link_list = link.split("/")
-        word = link_list[-1].strip("*")
-        path_list = path.split("/")
-        if path_list[-1].startswith(word):
-            return True
+        if link.endswith("*"):
+            link = link.strip("*")
+            if path.startswith(link):
+                return True
 
     def authorization_header(self, request=None) -> str:
         """
