@@ -17,6 +17,9 @@ if os.getenv("AUTH_TYPE"):
     if os.getenv("AUTH_TYPE") == "basic_auth":
         from .auth.basic_auth import BasicAuth
         auth = BasicAuth()
+    elif os.getenv("AUTH_TYPE") == "session_auth":
+        from .auth.session_auth import SessionAuth
+        auth = SessionAuth()
     else:
         from .auth.auth import Auth
         auth = Auth()
