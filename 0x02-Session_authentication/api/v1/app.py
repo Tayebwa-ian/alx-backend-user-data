@@ -20,6 +20,12 @@ if os.getenv("AUTH_TYPE"):
     elif os.getenv("AUTH_TYPE") == "session_auth":
         from .auth.session_auth import SessionAuth
         auth = SessionAuth()
+    elif getenv('AUTH_TYPE') == 'session_exp_auth':
+        from .auth.session_exp_auth import SessionExpAuth
+        auth = SessionExpAuth()
+    elif getenv('AUTH_TYPE') == 'session_db_auth':
+        from .auth.session_db_auth import SessionDBAuth
+        auth = SessionDBAuth()
     else:
         from .auth.auth import Auth
         auth = Auth()
@@ -52,10 +58,14 @@ def before_request():
     handler before_request
     """
     authorized_list = ['/api/v1/status',
-                       '/api/v1/unauthorized/', '/api/v1/forbidden']
+                       '/api/v1/unauthorized/',
+                       '/api/v1/forbidden',
+                       '/api/v1/auth_session/login/'
+                       ]
 
     if auth and auth.require_auth(request.path, authorized_list):
-        if not auth.authorization_header(request):
+        if (not auth.authorization_header(request) and
+            not auth.session_cookie(request)):
             abort(401)
         if not auth.current_user(request):
             abort(403)
