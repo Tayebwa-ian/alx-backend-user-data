@@ -66,7 +66,7 @@ class Auth:
             request: Flask request object
         """
         return None
-    
+
     def session_cookie(self, request=None):
         """ Returns request cookie value """
         if request is None:
