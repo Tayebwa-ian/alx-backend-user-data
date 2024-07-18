@@ -20,7 +20,7 @@ class User(Base):
         reset_token: token to refresh sessions
     """
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, unique=True)
+    id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
     email = Column(String(250), nullable=False, unique=True)
     hashed_password = Column(String(250), nullable=False, unique=True)
     session_id = Column(String(250), unique=True)
