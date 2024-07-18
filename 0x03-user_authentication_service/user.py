@@ -25,3 +25,9 @@ class User(Base):
     hashed_password = Column(String(250), nullable=False, unique=True)
     session_id = Column(String(250), unique=True)
     reset_token = Column(String(250), unique=True)
+
+    def __repr__(self):
+        """
+        String Rep
+        """
+        return f"User: id={self.id}"
